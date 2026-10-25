@@ -30,9 +30,7 @@ export default class SoluteComboBox extends DOM {
     wrapper.appendChild( label );
     const note = document.createElement( 'div' );
     note.style.cssText = 'font-size:12px;line-height:1.4;max-width:252px;';
-    const modelNote = document.createElement( 'div' );
-    modelNote.style.cssText = 'font-size:11px;line-height:1.4;max-width:252px;';
-    wrapper.append( note, modelNote );
+    wrapper.appendChild( note );
 
     const solutes = selectedSoluteProperty.validValues!;
     for ( const group of materialGroups ) {
@@ -57,7 +55,7 @@ export default class SoluteComboBox extends DOM {
       select.setAttribute( 'aria-label', value );
     } );
     PhScaleStrings.materials.noteStringProperty.link( value => { note.textContent = value; } );
-    PhScaleStrings.materials.modelNoteStringProperty.link( value => { modelNote.textContent = value; } );
+    PhScaleStrings.materials.modelNoteStringProperty.link( value => { select.title = value; } );
 
     super( wrapper, { allowInput: true, maxWidth: providedOptions.maxWidth } as DOMOptions );
   }
