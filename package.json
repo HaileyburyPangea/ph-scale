@@ -13,6 +13,7 @@
     "requirejsNamespace": "PH_SCALE",
     "runnable": true,
     "supportedBrands": [
+      "adapted-from-phet",
       "phet",
       "phet-io"
     ],

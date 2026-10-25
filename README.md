@@ -1,5 +1,51 @@
 pH Scale
 =============
+
+### Run this fork on GitHub Pages
+
+This fork builds the older **1.7.5** release on branch **`1.7`** into a standalone
+simulation. The development launcher `ph-scale_en.html` in the source tree needs
+sibling PhET repositories and cannot be served directly by GitHub Pages.
+
+1. Open [Settings → Pages](https://github.com/HaileyburyPangea/ph-scale/settings/pages).
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Open [Actions → Build GitHub Pages](https://github.com/HaileyburyPangea/ph-scale/actions/workflows/pages.yml).
+   Run the workflow on **`1.7`** (or re-run its latest deployment after enabling Pages).
+4. Open **https://haileyburypangea.github.io/ph-scale/** after deployment succeeds.
+
+If the `github-pages` environment restricts deployment branches, allow **`1.7`**.
+Future pushes to `1.7` automatically rebuild and deploy. `main` is retained as the
+unsupported upstream snapshot; it is not used for this build.
+
+The workflow uses PhET's `adapted-from-phet` branding and publishes the actual
+simulation as `index.html`, with `ph-scale_en.html` as an alternative URL. Both
+are self-contained HTML, with no sibling repositories or build tools needed by
+visitors. This hosts the simulation itself; it does not embed the PhET website.
+
+### Reproduce the Pages build locally
+
+Clone this fork as a directory named `ph-scale` inside a fresh parent directory,
+check out `1.7`, and use Node.js 22:
+
+```sh
+git clone --branch 1.7 https://github.com/HaileyburyPangea/ph-scale.git
+node ph-scale/scripts/build-pages.mjs
+```
+
+The script clones public dependencies beside `ph-scale` at the exact SHAs in
+`dependencies.json`, installs the checked-in npm lockfiles, and builds English
+only. Babel's locale metadata uses the pinned commit immediately before the
+1.7.5 release, because the release manifest omits Babel. Existing sibling
+checkouts must match those SHAs; the script refuses to overwrite other versions.
+Proprietary PhET-iO dependencies are not needed. Upstream `WARNING404` messages
+about those skipped repositories are expected.
+
+The static site is written to `ph-scale/build/pages/`. Its `LICENSE` and
+`dependencies.json` retain the licensing and dependency provenance; original
+attributions and third-party notices remain inside the generated simulation.
+
+---
+
 "pH Scale" is an educational simulation in HTML5, by <a href="https://phet.colorado.edu/" target="_blank">PhET
 Interactive Simulations</a>
 at the University of Colorado Boulder. For a description of this simulation, associated resources, and a link to the
