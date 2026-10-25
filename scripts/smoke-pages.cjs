@@ -3,6 +3,7 @@ const assert = require( 'node:assert/strict' );
 const path = require( 'node:path' );
 const { pathToFileURL } = require( 'node:url' );
 const puppeteer = require( '../../perennial-alias/node_modules/puppeteer' );
+const { mkdirSync } = require( 'node:fs' );
 
 ( async () => {
   const browser = await puppeteer.launch( {
@@ -36,6 +37,9 @@ const puppeteer = require( '../../perennial-alias/node_modules/puppeteer' );
           if ( !menu ) { throw new Error( 'No visible material menu' ); }
           const groups = Array.from( menu.querySelectorAll( 'optgroup' ) ).map( group => group.label );
           const values = Array.from( menu.options ).map( option => option.value );
+          if ( Array.from( menu.options ).some( option => !option.textContent.trim() ) ) {
+            throw new Error( 'A material has an empty label' );
+          }
           if ( new Set( values ).size !== values.length ) { throw new Error( 'Duplicate material IDs' ); }
           for ( const value of values ) {
             menu.value = value;
@@ -48,15 +52,19 @@ const puppeteer = require( '../../perennial-alias/node_modules/puppeteer' );
             }
           }
           model.reset();
-          if ( menu.selectedOptions[ 0 ].textContent.toLowerCase() !== 'water' ) {
-            throw new Error( 'Reset did not synchronise the menu' );
+          const resetSolute = model.dropper.soluteProperty.value;
+          if ( menu.value !== resetSolute.tandemName || resetSolute.pH !== 7 ) {
+            throw new Error( `Reset mismatch: menu=${menu.value}, model=${resetSolute.tandemName}, pH=${resetSolute.pH}, label=${menu.selectedOptions[ 0 ]?.textContent}` );
           }
-          return { count: values.length, groups };
+          return { count: values.length, groups, resetLabel: menu.selectedOptions[ 0 ]?.textContent };
         }, index );
         assert.equal( result.count, 84 );
         assert.equal( result.groups.length, 6 );
         assert( result.groups.some( group => group.includes( 'Imaginary' ) ) );
         console.log( `Verified ${result.count} materials and ${result.groups.length} labelled groups on ${screens[ index ]}` );
+        console.log( `Reset selection label: ${JSON.stringify( result.resetLabel )}` );
+        mkdirSync( path.resolve( __dirname, '../build/screenshots' ), { recursive: true } );
+        await page.screenshot( { path: path.resolve( __dirname, `../build/screenshots/screen-${index}.png` ) } );
       }
     }
     assert.deepEqual( errors, [], 'The simulation must run without uncaught browser errors' );

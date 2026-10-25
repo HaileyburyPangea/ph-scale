@@ -29,6 +29,11 @@ jobs:
         run: node ph-scale/scripts/build-pages.mjs
       - name: Check all screens in Chrome
         run: node ph-scale/scripts/smoke-pages.cjs
+      - name: Save browser screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: expanded-screenshots
+          path: ph-scale/build/screenshots
       - name: Check out the original version for the site root
         if: github.ref == 'refs/heads/expanded-materials'
         uses: actions/checkout@v4
