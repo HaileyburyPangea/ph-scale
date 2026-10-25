@@ -27,6 +27,8 @@ jobs:
           node-version: '22'
       - name: Build standalone simulation with pinned release dependencies
         run: node ph-scale/scripts/build-pages.mjs
+      - name: Check all screens in Chrome
+        run: node ph-scale/scripts/smoke-pages.cjs
       - name: Save standalone site
         uses: actions/upload-pages-artifact@v3
         with:
