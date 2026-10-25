@@ -27,6 +27,37 @@ const puppeteer = require( '../../perennial-alias/node_modules/puppeteer' );
         sim.selectedScreenProperty.value = sim.screens[ index ];
       }, index );
       await page.evaluate( () => new Promise( resolve => requestAnimationFrame( () => requestAnimationFrame( resolve ) ) ) );
+      if ( index === 1 || index === 2 ) {
+        const result = await page.evaluate( index => {
+          const sim = window.phet.joist.sim;
+          const model = sim.screens[ index ].model;
+          const menu = Array.from( document.querySelectorAll( 'select.material-select' ) )
+            .find( select => select.getBoundingClientRect().width > 0 && select.getBoundingClientRect().height > 0 );
+          if ( !menu ) { throw new Error( 'No visible material menu' ); }
+          const groups = Array.from( menu.querySelectorAll( 'optgroup' ) ).map( group => group.label );
+          const values = Array.from( menu.options ).map( option => option.value );
+          if ( new Set( values ).size !== values.length ) { throw new Error( 'Duplicate material IDs' ); }
+          for ( const value of values ) {
+            menu.value = value;
+            menu.dispatchEvent( new Event( 'change', { bubbles: true } ) );
+            model.step( 20 );
+            const solute = model.dropper.soluteProperty.value;
+            if ( solute.tandemName !== value || !Number.isFinite( model.solution.pHProperty.value ) ||
+                 Math.abs( model.solution.pHProperty.value - solute.pH ) > 0.011 ) {
+              throw new Error( `Material selection/pH failed: ${value}` );
+            }
+          }
+          model.reset();
+          if ( menu.selectedOptions[ 0 ].textContent.toLowerCase() !== 'water' ) {
+            throw new Error( 'Reset did not synchronise the menu' );
+          }
+          return { count: values.length, groups };
+        }, index );
+        assert.equal( result.count, 84 );
+        assert.equal( result.groups.length, 6 );
+        assert( result.groups.some( group => group.includes( 'Imaginary' ) ) );
+        console.log( `Verified ${result.count} materials and ${result.groups.length} labelled groups on ${screens[ index ]}` );
+      }
     }
     assert.deepEqual( errors, [], 'The simulation must run without uncaught browser errors' );
     console.log( `Browser smoke test passed: ${screens.join( ', ' )}` );

@@ -533,5 +533,254 @@
         }
       }
     }
+  },
+  "materials": {
+    "groups": {
+      "food": {
+        "value": "Food & drinks"
+      },
+      "household": {
+        "value": "Household & cleaning"
+      },
+      "nature": {
+        "value": "Nature & body fluids"
+      },
+      "unusual": {
+        "value": "Weird & wonderful"
+      },
+      "lab": {
+        "value": "Chemical solutions (25 °C)"
+      },
+      "fiction": {
+        "value": "Imaginary samples — made up!"
+      }
+    },
+    "names": {
+      "lemonJuice": {
+        "value": "Lemon juice"
+      },
+      "limeJuice": {
+        "value": "Lime juice"
+      },
+      "appleJuice": {
+        "value": "Apple juice"
+      },
+      "grapefruitJuice": {
+        "value": "Grapefruit juice"
+      },
+      "pineappleJuice": {
+        "value": "Pineapple juice"
+      },
+      "grapeJuice": {
+        "value": "Grape juice"
+      },
+      "cranberryJuice": {
+        "value": "Cranberry juice"
+      },
+      "tomatoJuice": {
+        "value": "Tomato juice"
+      },
+      "coconutWater": {
+        "value": "Coconut water"
+      },
+      "blackTea": {
+        "value": "Black tea"
+      },
+      "greenTea": {
+        "value": "Green tea"
+      },
+      "sparklingWater": {
+        "value": "Sparkling water"
+      },
+      "yoghurt": {
+        "value": "Plain yoghurt"
+      },
+      "ketchup": {
+        "value": "Ketchup"
+      },
+      "mustard": {
+        "value": "Mustard"
+      },
+      "mayonnaise": {
+        "value": "Mayonnaise"
+      },
+      "honeyWater": {
+        "value": "Honey in water"
+      },
+      "whiteVinegar": {
+        "value": "White vinegar"
+      },
+      "appleCiderVinegar": {
+        "value": "Apple cider vinegar"
+      },
+      "soySauce": {
+        "value": "Soy sauce"
+      },
+      "hotSauce": {
+        "value": "Hot sauce"
+      },
+      "oatMilk": {
+        "value": "Oat milk"
+      },
+      "eggWhite": {
+        "value": "Egg white"
+      },
+      "bakingSoda": {
+        "value": "Baking soda solution"
+      },
+      "washingSoda": {
+        "value": "Washing soda solution"
+      },
+      "dishwashingLiquid": {
+        "value": "Dishwashing liquid"
+      },
+      "laundryDetergent": {
+        "value": "Laundry detergent solution"
+      },
+      "shampoo": {
+        "value": "Shampoo"
+      },
+      "conditioner": {
+        "value": "Hair conditioner"
+      },
+      "toothpasteSlurry": {
+        "value": "Toothpaste in water"
+      },
+      "mouthwash": {
+        "value": "Mouthwash"
+      },
+      "windowCleaner": {
+        "value": "Ammonia window cleaner"
+      },
+      "householdAmmonia": {
+        "value": "Household ammonia solution"
+      },
+      "chlorineBleach": {
+        "value": "Household chlorine bleach"
+      },
+      "toiletCleaner": {
+        "value": "Acid toilet cleaner"
+      },
+      "ovenCleaner": {
+        "value": "Alkaline oven cleaner"
+      },
+      "antacid": {
+        "value": "Antacid suspension"
+      },
+      "contactLensSaline": {
+        "value": "Contact lens saline"
+      },
+      "rainwater": {
+        "value": "Rainwater"
+      },
+      "acidRain": {
+        "value": "Acid rain"
+      },
+      "seawater": {
+        "value": "Seawater"
+      },
+      "freshwater": {
+        "value": "Freshwater sample"
+      },
+      "tears": {
+        "value": "Tears"
+      },
+      "sweat": {
+        "value": "Sweat"
+      },
+      "urine": {
+        "value": "Urine sample"
+      },
+      "stomachFluid": {
+        "value": "Stomach fluid"
+      },
+      "pancreaticFluid": {
+        "value": "Pancreatic fluid"
+      },
+      "pickleBrine": {
+        "value": "Pickle brine"
+      },
+      "sauerkrautBrine": {
+        "value": "Sauerkraut brine"
+      },
+      "kimchiBrine": {
+        "value": "Kimchi brine"
+      },
+      "kombucha": {
+        "value": "Kombucha"
+      },
+      "redCabbageJuice": {
+        "value": "Red cabbage juice"
+      },
+      "beetrootJuice": {
+        "value": "Beetroot juice"
+      },
+      "blackOliveBrine": {
+        "value": "Black olive brine"
+      },
+      "volcanicLake": {
+        "value": "Acidic volcanic lake water"
+      },
+      "hcl01": {
+        "value": "Hydrochloric acid (0.1 M)"
+      },
+      "hcl001": {
+        "value": "Hydrochloric acid (0.01 M)"
+      },
+      "hcl0001": {
+        "value": "Hydrochloric acid (0.001 M)"
+      },
+      "nitricAcid": {
+        "value": "Nitric acid (0.01 M)"
+      },
+      "aceticAcid": {
+        "value": "Acetic acid (0.1 M)"
+      },
+      "ammoniumChloride": {
+        "value": "Ammonium chloride (0.1 M)"
+      },
+      "sodiumChloride": {
+        "value": "Sodium chloride (0.1 M)"
+      },
+      "sodiumAcetate": {
+        "value": "Sodium acetate (0.1 M)"
+      },
+      "ammonia001": {
+        "value": "Ammonia (0.01 M)"
+      },
+      "naoh0001": {
+        "value": "Sodium hydroxide (0.001 M)"
+      },
+      "naoh001": {
+        "value": "Sodium hydroxide (0.01 M)"
+      },
+      "naoh01": {
+        "value": "Sodium hydroxide (0.1 M)"
+      },
+      "alienSlime": {
+        "value": "Alien slime (fictional)"
+      },
+      "dragonDrool": {
+        "value": "Dragon drool (fictional)"
+      },
+      "unicornFizz": {
+        "value": "Unicorn fizz (fictional)"
+      },
+      "moonPuddle": {
+        "value": "Moon puddle (fictional)"
+      },
+      "goblinSoap": {
+        "value": "Goblin soap (fictional)"
+      }
+    },
+    "choose": {
+      "value": "Choose a material"
+    },
+    "note": {
+      "value": "Example pH values; real samples vary."
+    },
+    "modelNote": {
+      "value": "Simplified dilution model; colours illustrative."
+    }
   }
 }

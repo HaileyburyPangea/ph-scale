@@ -2,7 +2,7 @@ name: Build GitHub Pages
 
 on:
   push:
-    branches: ['1.7']
+    branches: ['1.7', 'expanded-materials']
   workflow_dispatch:
 
 permissions:
@@ -29,6 +29,18 @@ jobs:
         run: node ph-scale/scripts/build-pages.mjs
       - name: Check all screens in Chrome
         run: node ph-scale/scripts/smoke-pages.cjs
+      - name: Check out the original version for the site root
+        if: github.ref == 'refs/heads/expanded-materials'
+        uses: actions/checkout@v4
+        with:
+          ref: '1.7'
+          path: stable/ph-scale
+      - name: Keep the original site and add the expanded preview
+        if: github.ref == 'refs/heads/expanded-materials'
+        run: |
+          node stable/ph-scale/scripts/build-pages.mjs
+          cp -R ph-scale/build/pages stable/ph-scale/build/pages/expanded
+          cp -R stable/ph-scale/build/pages/. ph-scale/build/pages/
       - name: Save standalone site
         uses: actions/upload-pages-artifact@v3
         with:

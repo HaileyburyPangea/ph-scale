@@ -1,6 +1,21 @@
 pH Scale
 =============
 
+### Expanded materials branch
+
+The `expanded-materials` branch adds **72 new choices (84 total)** in six labelled,
+scrollable groups: Food & drinks, Household & cleaning, Nature & body fluids,
+Weird & wonderful, Chemical solutions, and Imaginary samples. Fictional choices
+are explicitly marked. Both Macro and Micro have the expanded menu.
+
+[Play the expanded version](https://haileyburypangea.github.io/ph-scale/expanded/).
+The workflow for this branch preserves the original `1.7` simulation at the site
+root and puts the expanded version at `/expanded/`. A later deployment from `1.7`
+can remove the preview; re-run this branch's workflow to restore it.
+
+See [the catalogue and modelling notes](doc/materials.md) for example stock pH
+values, references, and the limits of the simplified dilution model.
+
 ### Run this fork on GitHub Pages
 
 This fork builds the older **1.7.5** release on branch **`1.7`** into a standalone

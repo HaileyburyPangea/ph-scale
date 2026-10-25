@@ -21,6 +21,7 @@ import Beaker from './Beaker.js';
 import Dropper from './Dropper.js';
 import Faucet from './Faucet.js';
 import Solute from './Solute.js';
+import { allMaterials } from './MaterialCatalogue.js';
 import Solution from './Solution.js';
 import Water from './Water.js';
 import PHScalePreferences from './PHScalePreferences.js';
@@ -80,20 +81,7 @@ export default class PHModel<T extends Solution> implements TModel {
       autofillVolume: 0.5
     }, providedOptions );
 
-    this.solutes = [
-      Solute.BATTERY_ACID,
-      Solute.BLOOD,
-      Solute.CHICKEN_SOUP,
-      Solute.COFFEE,
-      Solute.DRAIN_CLEANER,
-      Solute.HAND_SOAP,
-      Solute.MILK,
-      Solute.ORANGE_JUICE,
-      Solute.SODA,
-      Solute.SPIT,
-      Solute.VOMIT,
-      Solute.WATER
-    ];
+    this.solutes = allMaterials;
 
     this.beaker = new Beaker( PHScaleConstants.BEAKER_POSITION );
 
